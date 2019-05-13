@@ -114,5 +114,8 @@ if __name__ == '__main__':
     parser.add_argument('--robotarium-log', action='store_true', default=False,
                         help='turn on robotarium log file')
 
+    ARGS = parser.parse_args()
+
+
 
     main()

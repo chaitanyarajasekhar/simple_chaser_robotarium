@@ -59,12 +59,12 @@ def get_orientation(velocities):
 def main():
 
     # Load trajectory points
-    trajectories = np.load(os.path.join("simple_chaser/", "chaser_12_not_random.npy"))
+    trajectories = np.load(os.path.join("simple_chaser/test_data/", "chaser_12_not_random.npy"))
     # trajectories = np.loadtxt("text_data/c1/agents.txt")
 
     # Instantiate Robotarium object
     N = int(trajectories.shape[1]/4)
-    r = robotarium.Robotarium(number_of_agents=N, show_figure=True, save_data=True, update_time=0.3)
+    r = robotarium.Robotarium(number_of_agents=N, show_figure=True, save_data=ARGS.robotarium_log, update_time=0.3)
 
     # # Define goal points by removing orientation from poses
     # goal_points = generate_initial_conditions(N)
@@ -104,8 +104,15 @@ def main():
         # execution of your experiment
         r.call_at_scripts_end()
 
-    time.sleep(5)
+    time.sleep(1)
 
 if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+    # parser.add_argument('--exp-option', type = int, default=None ,
+    #                     help='select 1 - for standart testing ')
+    parser.add_argument('--robotarium-log', action='store_true', default=False,
+                        help='turn on robotarium log file')
+
 
     main()
